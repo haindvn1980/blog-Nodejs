@@ -1,0 +1,27 @@
+<%- include('./header.ejs')%>
+<div style="padding:20px">
+  <div class="width_common list-news-subfolder has-border-right">
+    <% posts.forEach(function(post) { %>
+    <article class="item-news item-news-common">
+      <div class="thumb-art">
+        <a href="/Posts/Show/<%=post._id%>" class="thumb thumb-5x3" title="<%=post.title%>">
+          <picture>
+            <img itemprop="contentUrl" style="transform: translateX(-50%); left: 50%;" loading="lazy"
+              intrinsicsize="300x180" alt="<%=post.title%>" class="lazy loading" src="/images/<%=post.image_name%>"
+              data-ll-status="loading">
+          </picture>
+        </a>
+      </div>
+      <h1 class="title-news"><a href="/Posts/Show/<%=post._id%>" title="<%=post.title%>"><%=post.title%> </a></h1>
+
+      <p class="description title">
+        <%-post.sub_content%> </p>
+    </article>
+    <p class="meta">Posted in: <a href="/categories/show/<%=post.category_code%>"><%=post.category_code%></a>.
+      <by>Posted by: <%=post.author%></by>.
+      <on>Posted on: <%= post.createdAt.toLocaleString()  %></on>
+    </p>
+    <% }); %>
+  </div>
+</div>
+<%- include('./footer.ejs')%>
